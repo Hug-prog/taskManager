@@ -2,7 +2,7 @@ import Users from "../models/Users.js";
 import mongoose from "mongoose";
 
 export const createUser = async (req, res) => {
-    //console.log(req.body)
+    //console.log(req)
     const { email, password} = req.body;
   try {
     const user = await Users.create({
@@ -15,7 +15,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-/* export const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await Users.find();
     res.status(200).json(users);
@@ -24,6 +24,7 @@ export const createUser = async (req, res) => {
   }
 };
 
+/*
 export const getUserById = async (req, res) => {
   const { id } = req.params;
   try {
