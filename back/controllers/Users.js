@@ -2,12 +2,12 @@ import Users from "../models/Users.js";
 import mongoose from "mongoose";
 
 export const createUser = async (req, res) => {
-    //console.log(req)
-    const { email, password} = req.body;
+  //console.log(req)
+  const { email, password } = req.body;
   try {
     const user = await Users.create({
-        email,
-        password,
+      email,
+      password,
     });
     return res.status(201).json(user);
   } catch (error) {
@@ -24,14 +24,16 @@ export const getUsers = async (req, res) => {
   }
 };
 
-/*
 export const getUserById = async (req, res) => {
   const { id } = req.params;
   try {
-    const user = await Users.findOne({ _id: id });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ messag: "this user doens't exist" });
+    }
+    const user = await Users.findById(id);
     res.status(200).json(user);
   } catch (error) {
-    res.status(404).json({ message: "cette utilisateur n'existe pas." });
+    res.status(404).json({ message: "request want wrong" });
   }
 };
 
@@ -46,6 +48,8 @@ export const deleteUser = async (req, res) => {
     res.status(404).json({ message: "request want wrong" });
   }
 };
+
+/*
 
 export const addTechnology = async (req, res) => {
   const { technologyId } = req.body;
