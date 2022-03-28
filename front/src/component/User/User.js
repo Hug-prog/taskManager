@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Todolist from "../Todolist/Todolist";
-import { API } from "../../api/index";
+import { getTodolistByUser } from "../../api/index";
+import { useDispatch, useSelector } from "react-redux";
 
 function User({ user }) {
-  const [todolists, setTodolists] = useState([]);
+  const todolists = useSelector((state) => state.todolistsReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    API.get("/todolists/user/" + user._id).then((res) => {
-      console.log(res.data);
-      setTodolists(res.data);
-    });
-  }, []);
+    dispatch(getTodolistByUser(user._id));
+  }, [dispatch]);
 
   return (
     <div className="User">
