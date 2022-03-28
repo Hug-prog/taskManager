@@ -9,13 +9,6 @@ export const API = axios.create({
   },
 });
 
-<<<<<<< HEAD
-export const getTodolistsByUserId = (user) =>
-  API.get("/todolists/user/" + user._id).then((res) => {
-    console.log(res.data);
-    return res.data;
-  });
-=======
 export const getTodolistByUser = (id) => {
   return (dispatch) => {
     API.get("/todolists/user/" + id)
@@ -33,4 +26,3 @@ export const deleteTodolist = (id) => {
       .catch((err) => console.log(err));
   };
 };
->>>>>>> 4a30704d4373e5ec0ead600b62213cbd58f08b84
