@@ -9,7 +9,7 @@ import {
 } from "../controllers/Todolists.js";
 
 const router = express.Router();
-router.post("/:id", createTodolist);
+router.post("/user/:id", createTodolist);
 router.get("/", getTodolists);
 router.delete("/:id", deleteTodolists);
 router.get("/:id", getTodolistsById);
