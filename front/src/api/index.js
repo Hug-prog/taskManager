@@ -7,3 +7,9 @@ export const API = axios.create({
     "Content-type": "application/json",
   },
 });
+
+export const getTodolistsByUserId = (user) =>
+  API.get("/todolists/user/" + user._id).then((res) => {
+    console.log(res.data);
+    return res.data;
+  });

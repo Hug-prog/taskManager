@@ -2,10 +2,12 @@ import mongoose from "mongoose";
 import Todos from "../models/Todos.js";
 
 export const createTodo = async (req, res) => {
+  const todolist = req.params.id;
   const { name, state } = req.body;
   try {
     const todo = await Todos.create({
       name,
+      owner: todolist,
       state,
     });
     res.status(201).json(todo);
