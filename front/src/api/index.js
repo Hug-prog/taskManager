@@ -1,6 +1,6 @@
 import axios from "axios";
-import React from "react";
 import { DELETE_TODOLIST, GET_TODOLISTS } from "../constants/todolists";
+import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
 //process.env.REACT_APP_CONNEXION_URL
 export const API = axios.create({
   baseURL: "http://localhost:5000",
@@ -23,6 +23,34 @@ export const deleteTodolist = (id) => {
   return (dispatch) => {
     API.delete("/todolists/" + id)
       .then((res) => dispatch({ type: DELETE_TODOLIST, payload: id }))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const deleteTodo = (id) => {
+  return (dispatch) => {
+    API.delete("/todos/" + id)
+      .then((res) => dispatch({ type: DELETE_TODO, payload: id }))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getTodosByIdTodolist = (id) => {
+  return (dispatch) => {
+    API.get("/todos/todolists/" + id)
+      .then((res) => {
+        return dispatch({ type: GET_TODO, payload: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const addTodo = (todo, todolistId) => {
+  return (dispatch) => {
+    API.post("/todos/todolists/" + todolistId, todo)
+      .then((res) => {
+        return dispatch({ type: ADD_TODO, payload: res.data });
+      })
       .catch((err) => console.log(err));
   };
 };

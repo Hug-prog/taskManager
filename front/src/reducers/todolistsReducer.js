@@ -7,7 +7,7 @@ export default function todolistsReducer(state = initialState, action) {
     case GET_TODOLISTS:
       return action.payload;
     case DELETE_TODOLIST:
-      return;
+      return state.filter((todolist) => todolist._id !== action.payload);
     default:
       return state;
   }
