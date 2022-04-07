@@ -1,5 +1,4 @@
 import express from "express";
-import { appendTodo } from "../controllers/Todolists.js";
 import {
   createTodo,
   getTodos,
