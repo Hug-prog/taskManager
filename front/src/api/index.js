@@ -1,5 +1,9 @@
 import axios from "axios";
-import { DELETE_TODOLIST, GET_TODOLISTS } from "../constants/todolists";
+import {
+  DELETE_TODOLIST,
+  GET_TODOLISTS,
+  UPDATE_NAME,
+} from "../constants/todolists";
 import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
 //process.env.REACT_APP_CONNEXION_URL
 export const API = axios.create({
@@ -50,6 +54,16 @@ export const addTodo = (todo, todolistId) => {
     API.post("/todos/todolists/" + todolistId, todo)
       .then((res) => {
         return dispatch({ type: ADD_TODO, payload: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const updateNameTodolistById = (todolistId, newName) => {
+  return (dispatch) => {
+    API.patch("/todolists/" + todolistId, newName)
+      .then((res) => {
+        return dispatch({ type: UPDATE_NAME, payload: res.data });
       })
       .catch((err) => console.log(err));
   };
