@@ -55,6 +55,7 @@ export const deleteTodolists = async (req, res) => {
 };
 
 export const updateName = async (req, res) => {
+  console.log(req.body,req.params);
   const { newName } = req.body;
   const { id } = req.params;
   try {

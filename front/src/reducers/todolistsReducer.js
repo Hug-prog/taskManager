@@ -13,7 +13,11 @@ export default function todolistsReducer(state = initialState, action) {
     case DELETE_TODOLIST:
       return state.filter((todolist) => todolist._id !== action.payload);
     case UPDATE_NAME:
-      return action.payload;
+      return state.map((todolist)=>{
+        if(todolist._id === action.payload._id){
+          return action.payload;
+        }else return todolist;
+      });
     default:
       return state;
   }

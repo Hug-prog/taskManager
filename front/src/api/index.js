@@ -5,11 +5,16 @@ import {
   UPDATE_NAME,
 } from "../constants/todolists";
 import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
-//process.env.REACT_APP_CONNEXION_URL
+
 export const API = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL:process.env.REACT_APP_API_URL,
+  withCredentials: true,
   headers: {
     "Content-type": "application/json",
+    "Access-Control-Allow-Methods":"PATCH,GET,HEAD,PUT,PATCH,POST,DELETE",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Origin": "*"
   },
 });
 
@@ -63,8 +68,8 @@ export const updateNameTodolistById = (todolistId, newName) => {
   return (dispatch) => {
     API.patch("/todolists/" + todolistId, newName)
       .then((res) => {
-        return dispatch({ type: UPDATE_NAME, payload: res.data });
+        return dispatch({ type: UPDATE_NAME ,payload:res.data});
       })
       .catch((err) => console.log(err));
-  };
+  }; 
 };

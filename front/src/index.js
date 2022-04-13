@@ -10,6 +10,7 @@ import rootReducer from "./reducers";
 import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

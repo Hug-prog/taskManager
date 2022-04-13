@@ -7,15 +7,15 @@ import FormTodo from "../component/Todolist/FormTodo";
 import UpdateTodolist from "../component/Todolist/UpdateTodolist";
 
 const Todolist = () => {
+  const todolist = useSelector((state)=>state.todolistsReducer);
   const todos = useSelector((state) => state.todosReducer);
   const [showForm, setShowForm] = useState(false);
   const [showBtnUp, setShowBtnUp] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  const state = location.state;
-  console.log(state.id);
+  
   useEffect(() => {
-    dispatch(getTodosByIdTodolist(state.id));
+    dispatch(getTodosByIdTodolist(location.state));
   }, [dispatch]);
   return (
     <div className="w-screen h-screen flex justify-center static ">
@@ -27,12 +27,12 @@ const Todolist = () => {
         <button onClick={() => setShowBtnUp(!showBtnUp)}>up</button>
       </div>
 
-      {showBtnUp ? <UpdateTodolist id={state.id} /> : ""}
+      {showBtnUp ? <UpdateTodolist id={location.state} /> : ""}
 
-      {showForm ? <FormTodo id={state.id} /> : ""}
+      {showForm ? <FormTodo id={location.state} /> : ""}
 
       <div className="bg-gradient-to-r from-blueMain to-bluelight w-5/6 h-5/6 flex flex-wrap m-auto rounded">
-        <h1>{state.name}</h1>
+        {/* <h1>{location.state.name}</h1> */}
         {todos ? todos.map((todo, i) => <Todo todo={todo} key={i} />) : ""}
       </div>
     </div>
