@@ -7,13 +7,13 @@ import FormTodo from "../component/Todolist/FormTodo";
 import UpdateTodolist from "../component/Todolist/UpdateTodolist";
 
 const Todolist = () => {
-  const todolist = useSelector((state)=>state.todolistsReducer);
-  const todos = useSelector((state) => state.todosReducer);
+  const todolist = useSelector(state => state.todolistsReducer);
+  const todos = useSelector(state => state.todosReducer);
   const [showForm, setShowForm] = useState(false);
   const [showBtnUp, setShowBtnUp] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getTodosByIdTodolist(location.state));
   }, [dispatch]);

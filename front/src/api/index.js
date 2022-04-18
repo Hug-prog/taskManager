@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  ADD_TODOLIST,
   DELETE_TODOLIST,
   GET_TODOLISTS,
   UPDATE_NAME,
@@ -7,69 +8,75 @@ import {
 import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
 
 export const API = axios.create({
-  baseURL:process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   withCredentials: true,
   headers: {
-    "Content-type": "application/json",
-    "Access-Control-Allow-Methods":"PATCH,GET,HEAD,PUT,PATCH,POST,DELETE",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Origin": "*"
+    "Content-Type": "application/json",
   },
 });
 
-export const getTodolistByUser = (id) => {
-  return (dispatch) => {
+export const getTodolistByUser = id => {
+  return dispatch => {
     API.get("/todolists/user/" + id)
-      .then((res) => {
+      .then(res => {
         return dispatch({ type: GET_TODOLISTS, payload: res.data });
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 };
 
-export const deleteTodolist = (id) => {
-  return (dispatch) => {
+export const deleteTodolist = id => {
+  return dispatch => {
     API.delete("/todolists/" + id)
-      .then((res) => dispatch({ type: DELETE_TODOLIST, payload: id }))
-      .catch((err) => console.log(err));
+      .then(res => dispatch({ type: DELETE_TODOLIST, payload: id }))
+      .catch(err => console.log(err));
   };
 };
 
-export const deleteTodo = (id) => {
-  return (dispatch) => {
+export const deleteTodo = id => {
+  return dispatch => {
     API.delete("/todos/" + id)
-      .then((res) => dispatch({ type: DELETE_TODO, payload: id }))
-      .catch((err) => console.log(err));
+      .then(res => dispatch({ type: DELETE_TODO, payload: id }))
+      .catch(err => console.log(err));
   };
 };
 
-export const getTodosByIdTodolist = (id) => {
-  return (dispatch) => {
+export const getTodosByIdTodolist = id => {
+  return dispatch => {
     API.get("/todos/todolists/" + id)
-      .then((res) => {
+      .then(res => {
         return dispatch({ type: GET_TODO, payload: res.data });
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
+  };
+};
+
+export const addTodlistByUserId = (userId, name) => {
+  return dispatch => {
+    API.post("/user/" + userId, name)
+      .then(res => {
+        return dispatch({ type: ADD_TODOLIST, payload: res.data });
+      })
+      .catch(err => console.log(err));
   };
 };
 
 export const addTodo = (todo, todolistId) => {
-  return (dispatch) => {
+  return dispatch => {
     API.post("/todos/todolists/" + todolistId, todo)
-      .then((res) => {
+      .then(res => {
         return dispatch({ type: ADD_TODO, payload: res.data });
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 };
 
 export const updateNameTodolistById = (todolistId, newName) => {
-  return (dispatch) => {
+  return dispatch => {
     API.patch("/todolists/" + todolistId, newName)
-      .then((res) => {
-        return dispatch({ type: UPDATE_NAME ,payload:res.data});
+      .then(res => {
+        return dispatch({ type: UPDATE_NAME, payload: res.data });
       })
-      .catch((err) => console.log(err));
-  }; 
+      .catch(err => console.log(err));
+  };
 };

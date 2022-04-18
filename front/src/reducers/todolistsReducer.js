@@ -1,4 +1,5 @@
 import {
+  ADD_TODOLIST,
   DELETE_TODOLIST,
   GET_TODOLISTS,
   UPDATE_NAME,
@@ -12,7 +13,9 @@ export default function todolistsReducer(state = initialState, action) {
       return action.payload;
     case DELETE_TODOLIST:
       return state.filter((todolist) => todolist._id !== action.payload);
-    case UPDATE_NAME:
+    case ADD_TODOLIST:
+      return [...state, action.payload];
+      case UPDATE_NAME:
       return state.map((todolist)=>{
         if(todolist._id === action.payload._id){
           return action.payload;

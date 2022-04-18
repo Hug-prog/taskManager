@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Todolist from "../Todolist/Todolist";
 import { getTodolistByUser } from "../../api/index";
 import { useDispatch, useSelector } from "react-redux";
+import AddTodolist from "../Todolist/AddTodolist";
 
 function User({ user }) {
-  const todolists = useSelector((state) => state.todolistsReducer);
+  const todolists = useSelector(state => state.todolistsReducer);
+  const [showBtnAddTodolist, setShowBtnAddTodolist] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTodolistByUser(user._id));
@@ -19,6 +21,13 @@ function User({ user }) {
               <Todolist todolist={todolist} key={i} />
             ))
           : ""}
+        <div>
+          <button onClick={() => setShowBtnAddTodolist(!showBtnAddTodolist)}>
+            Add Todolist
+          </button>
+        </div>
+
+        {showBtnAddTodolist ? <AddTodolist id={user._id} /> : ""}
       </div>
     </div>
   );
