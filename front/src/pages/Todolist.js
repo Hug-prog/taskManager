@@ -22,8 +22,13 @@ const Todolist = () => {
         <button onClick={() => setShowForm(!showForm)}>add todo</button>
       </div>
 
-      <div>
-        <button onClick={() => setShowBtnUp(!showBtnUp)}>up</button>
+      <div className="relative">
+        <button
+          className=" absolute top-2 left-6 bg-gray p-2 rounded text-white w-32"
+          onClick={() => setShowBtnUp(!showBtnUp)}
+        >
+          update Name
+        </button>
       </div>
 
       {showBtnUp ? <UpdateTodolist id={location.state} /> : ""}

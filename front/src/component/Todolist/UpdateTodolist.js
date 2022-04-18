@@ -17,14 +17,18 @@ const UpdateTodolist = ({ id }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={e => handleSubmit(e)}>
+    <div className="h-screen w-80 fixed bg-blueMain  top-0 right-0 pt-60 z-10 ">
+      <form className="w-1/2 h-1/2 m-auto" onSubmit={e => handleSubmit(e)}>
+        <label className="block mb-3">name</label>
         <input
+          className="block"
           placeholder="update name"
           value={updateName}
           onChange={e => handleUpdateName(e)}
         />
-        <button type="submit">update</button>
+        <button className="mt-10 bg-gray p-3 rounded" type="submit">
+          update
+        </button>
       </form>
     </div>
   );
