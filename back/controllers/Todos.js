@@ -2,10 +2,14 @@ import mongoose from "mongoose";
 import Todos from "../models/Todos.js";
 
 export const createTodo = async (req, res) => {
+  const todolist = req.params.id;
   const { name, state } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(todolist))
+    return res.status(400).json({ message: "this todolist doens't exist" });
   try {
     const todo = await Todos.create({
       name,
+      owner: todolist,
       state,
     });
     res.status(201).json(todo);
@@ -20,6 +24,18 @@ export const getTodos = async (req, res) => {
     res.status(200).json(todos);
   } catch (error) {
     res.status(404).json(error);
+  }
+};
+
+export const getTodoByTodolist = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(400).json({ message: "this todolist doens't exist" });
+  try {
+    const todo = await Todos.find({ owner: id });
+    res.status(200).json(todo);
+  } catch (error) {
+    res.status(400).json(error);
   }
 };
 

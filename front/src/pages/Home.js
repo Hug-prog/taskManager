@@ -8,15 +8,14 @@ export default function Home() {
 
   useEffect(() => {
     API.get("/users").then((res) => {
-      console.log(res.data);
       setUsers(res.data);
     });
   }, []);
 
   return (
-    <div>
+    <div className="max-w-screen-4xl truncate w-screen h-screen ">
       <p>home</p>
-      <div>
+      <div className="flex justify-center w-screen h-screen">
         {users.map((user, i) => (
           <User user={user} key={i} />
         ))}

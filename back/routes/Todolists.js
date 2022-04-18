@@ -15,8 +15,5 @@ router.delete("/:id", deleteTodolists);
 router.get("/:id", getTodolistsById);
 router.patch("/:id", updateName);
 router.get("/user/:id", getTodolistsByUser);
-//router.get("/:id", getUserById);
-//router.delete("/:id", deleteUser);
-//router.patch("/:id/technologies/add", addTechnology);
 
 export default router;
