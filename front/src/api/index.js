@@ -53,7 +53,7 @@ export const getTodosByIdTodolist = id => {
 
 export const addTodlistByUserId = (userId, name) => {
   return dispatch => {
-    API.post("/user/" + userId, name)
+    API.post("todolists/user/" + userId, name)
       .then(res => {
         return dispatch({ type: ADD_TODOLIST, payload: res.data });
       })
@@ -73,7 +73,7 @@ export const addTodo = (todo, todolistId) => {
 
 export const updateNameTodolistById = (todolistId, newName) => {
   return dispatch => {
-    API.patch("/todolists/" + todolistId, newName)
+    API.patch("todolists/" + todolistId, newName)
       .then(res => {
         return dispatch({ type: UPDATE_NAME, payload: res.data });
       })

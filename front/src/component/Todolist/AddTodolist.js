@@ -12,7 +12,8 @@ const AddTodolist = ({ id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addTodlistByUserId(id, name));
+    const todolist = { name: name };
+    dispatch(addTodlistByUserId(id, todolist));
   };
 
   return (

@@ -7,7 +7,6 @@ import FormTodo from "../component/Todolist/FormTodo";
 import UpdateTodolist from "../component/Todolist/UpdateTodolist";
 
 const Todolist = () => {
-  const todolist = useSelector(state => state.todolistsReducer);
   const todos = useSelector(state => state.todosReducer);
   const [showForm, setShowForm] = useState(false);
   const [showBtnUp, setShowBtnUp] = useState(false);
@@ -32,7 +31,6 @@ const Todolist = () => {
       {showForm ? <FormTodo id={location.state} /> : ""}
 
       <div className="bg-gradient-to-r from-blueMain to-bluelight w-5/6 h-5/6 flex flex-wrap m-auto rounded">
-        {/* <h1>{location.state.name}</h1> */}
         {todos ? todos.map((todo, i) => <Todo todo={todo} key={i} />) : ""}
       </div>
     </div>

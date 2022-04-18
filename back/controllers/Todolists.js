@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 export const createTodolist = async (req, res) => {
   const user = req.params.id;
   const { name } = req.body;
+  console.log(req.param, req.body);
   if (!mongoose.Types.ObjectId.isValid(user)) {
     res.status(400).json({ message: "this user doens't exist" });
   } else {
@@ -55,7 +56,6 @@ export const deleteTodolists = async (req, res) => {
 };
 
 export const updateName = async (req, res) => {
-  console.log(req.body,req.params);
   const { newName } = req.body;
   const { id } = req.params;
   try {
