@@ -7,13 +7,29 @@ import {
 } from "../constants/todolists";
 import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
 
+const xsrf_token = localStorage.getItem("xsrf_token");
+
 export const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
+    "x-xsrf-token": xsrf_token,
   },
 });
+
+export const login = user => {
+  API.post(`/users/login/`, user).then(res => {
+    if (res.status === 200) {
+      localStorage.setItem("xsrf_token", res.data);
+      window.location.href = "/home";
+    }
+  });
+};
+
+export const register = user => {
+  API.post("/users/", user);
+};
 
 export const getTodolistByUser = id => {
   return dispatch => {

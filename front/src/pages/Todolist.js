@@ -18,7 +18,7 @@ const Todolist = () => {
   }, [dispatch]);
   return (
     <div className="w-screen h-screen flex justify-center static ">
-      <div className="absolute top-5 right-5 bg-gray p-2 rounded text-white">
+      <div className="absolute top-2 right-5 bg-gray p-2 rounded text-white">
         <button onClick={() => setShowForm(!showForm)}>add todo</button>
       </div>
 

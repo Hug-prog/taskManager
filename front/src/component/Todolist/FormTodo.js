@@ -7,15 +7,15 @@ const FormTodo = ({ id }) => {
   const [inputSate, setIputSate] = useState(false);
   const dispatch = useDispatch();
 
-  const handleName = (e) => {
+  const handleName = e => {
     setIputName(e.target.value);
   };
 
-  const handleState = (e) => {
+  const handleState = e => {
     setIputSate(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const todo = { name: inputName, state: inputSate };
     dispatch(addTodo(todo, id));
@@ -23,7 +23,7 @@ const FormTodo = ({ id }) => {
 
   return (
     <div className="h-screen w-64 fixed bg-blueMain top-0 left-0 pt-60 z-10 ">
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={e => handleSubmit(e)}>
         <label className="block mb-3 ml-2">name</label>
         <input
           className="block ml-5 "
