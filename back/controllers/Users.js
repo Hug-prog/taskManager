@@ -49,7 +49,7 @@ export const login = async (req, res) => {
       secure: true,
       //secure: false,
     });
-    res.status(200).json(xsrfToken);
+    res.status(200).json({ xsrfToken, user });
   } catch (error) {
     res.status(400).json({ message: error });
   }

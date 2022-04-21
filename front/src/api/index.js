@@ -6,6 +6,7 @@ import {
   UPDATE_NAME,
 } from "../constants/todolists";
 import { ADD_TODO, DELETE_TODO, GET_TODO } from "../constants/todos";
+import { SET_USER } from "../constants/user";
 
 const xsrf_token = localStorage.getItem("xsrf_token");
 
@@ -19,12 +20,15 @@ export const API = axios.create({
 });
 
 export const login = user => {
-  API.post(`/users/login/`, user).then(res => {
-    if (res.status === 200) {
-      localStorage.setItem("xsrf_token", res.data);
-      window.location.href = "/home";
-    }
-  });
+  return dispatch => {
+    API.post(`/users/login/`, user).then(res => {
+      if (res.status === 200) {
+        localStorage.setItem("xsrf_token", res.data);
+        dispatch({ type: SET_USER, payload: res.data });
+        //return window.history.pushState("/home");
+      }
+    });
+  };
 };
 
 export const register = user => {

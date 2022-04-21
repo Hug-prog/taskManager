@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { login } from "../../api";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   const handleEmail = e => {
     setEmail(e.target.value);
   };
@@ -15,7 +17,7 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const user = { email: email, password: password };
-    login(user);
+    dispatch(login(user));
   };
 
   return (
@@ -25,7 +27,7 @@ const Login = () => {
         <input onChange={handleEmail} />
         <label>password</label>
         <input onChange={handlePassword} />
-        <button type="submit">sign up</button>
+        <button type="submit">sign in</button>
       </form>
     </div>
   );
