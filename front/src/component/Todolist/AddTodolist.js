@@ -17,15 +17,17 @@ const AddTodolist = ({ id }) => {
   };
 
   return (
-    <div className=" w-64 md:w-72 h-60 lg:w-1/2 lg:h-1/2 bg-bluelight z-1 p-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg shadow-white-500/50 rounded ">
+    <div className=" w-64 md:w-72 h-60 lg:w-1/2 lg:h-1/2 bg-bluelight z-1 p-10 lg:p-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg shadow-white-500/50 rounded ">
       <form onSubmit={e => handleSubmit(e)}>
-        <label className="text-white block mb-6 lg:mb-3">Name</label>
+        <label className="text-white block lg:inline-block mb-6 lg:ml-8">
+          Name
+        </label>
         <input
           className="block lg:inline-block mb-8 lg:mb-5 "
           onChange={handleName}
         />
         <button
-          className="bg-gray p-2 w-32 rounded text-white ml-6"
+          className="bg-gray p-2 w-32 lg:w-20 rounded text-white ml-6"
           type="submit"
         >
           Send

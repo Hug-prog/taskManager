@@ -21,13 +21,18 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="w-full h-full flex justify-center items-center">
       <form onSubmit={e => handleSubmit(e)}>
-        <label>email</label>
+        <label className="block text-white">email</label>
         <input onChange={handleEmail} />
-        <label>password</label>
-        <input onChange={handlePassword} />
-        <button type="submit">sign in</button>
+        <label className="block text-white">password</label>
+        <input className="block" onChange={handlePassword} />
+        <button
+          className=" mt-8 ml-6 bg-gray p-2 w-32 rounded text-white"
+          type="submit"
+        >
+          sign in
+        </button>
       </form>
     </div>
   );

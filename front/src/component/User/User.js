@@ -23,7 +23,7 @@ function User({ user }) {
           : ""}
         <div>
           <button
-            className="absolute bottom-1 right-5 bg-gray p-2 rounded text-white"
+            className="absolute bottom-1 right-1 bg-gray p-2 rounded text-white"
             onClick={() => setShowBtnAddTodolist(!showBtnAddTodolist)}
           >
             Add Todolist
